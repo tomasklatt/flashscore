@@ -12,16 +12,32 @@ include('TestPersonBuilder.php');
 
 final class PersonTest extends TestCase
 {
-    public function testCanBeCreatedWithValidData(): void
+    public function successfulCreateProvider(): array
     {
+        return [
+            ['Tomáš Klatt', 'mail@tomasklatt.cz', '724 148 490', 'Absolonova 634', 'Brno 62400'],
+            ['Eric Theodore Cartman', 'cartman@comedycentral.com', '605 123 456', 'Londýnské náměstí 1', 'Brno 639 00'],
+        ];
+    }
+
+    /**
+     * @dataProvider successfulCreateProvider
+     */
+    public function testCanBeCreatedWithValidData(
+        string $name,
+        string $email,
+        string $phone,
+        string $street,
+        string $city
+    ): void {
         $this->assertInstanceOf(
             Person::class,
             (new TestPersonBuilder(
-                name: 'Tomáš Klatt',
-                email: 'mail@tomasklatt.cz',
-                phone: '724 148 490',
-                street: 'Absolonova 634',
-                city: 'Brno 62400'
+                name: $name,
+                email: $email,
+                phone: $phone,
+                street: $street,
+                city: $city
             ))->getPerson()
         );
     }

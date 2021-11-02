@@ -117,7 +117,7 @@ class Person
     private function setStreet(string $street): void
     {
         if(!StreetPropertyValidator::isValid($street)){
-            throw new StreetNotValidException("Phone is not valid.");
+            throw new StreetNotValidException("Street is not valid.");
         }
         $this->street = $street;
     }
@@ -129,7 +129,7 @@ class Person
     private function setCity(string $city): void
     {
         if(!CityPropertyValidator::isValid($city)){
-            throw new CityNotValidException("Phone is not valid.");
+            throw new CityNotValidException("City is not valid.");
         }
         $this->city = $city;
     }

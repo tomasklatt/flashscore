@@ -4,7 +4,7 @@ namespace app\validators\person;
 
 class StreetPropertyValidator implements PersonPropertyValidator
 {
-    CONST STREET_STRING_PATTERN = '^[a-zA-Z ]+ \d{1,5}$';
+    CONST STREET_STRING_PATTERN = '^[a-zA-Z ěščřžýáíééĚŠČŘŽÝÁÍÉ]+ \d{1,5}$';
 
     public static function isValid(string $property): bool
     {
