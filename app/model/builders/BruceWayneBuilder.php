@@ -4,7 +4,7 @@ namespace app\model\builders;
 
 use app\model\entities\Person;
 
-class TomasKlattBuilder implements PersonBuilder
+class BruceWayneBuilder implements PersonBuilder
 {
     private Person $person;
 
@@ -16,15 +16,15 @@ class TomasKlattBuilder implements PersonBuilder
     public function build(): void
      {
          $this->person = new Person(
-             name: "Tomáš Klatt",
-             email: "mail@tomasklatt.cz",
-             phone: "724 148 490",
-             street: "Absolonova 634",
-             city: "Brno 62400"
+             name: "Bruce Wayne",
+             email: "bruce@wayne.com",
+             phone: "604 123 456",
+             street: "Mountain Drive 1007",
+             city: "Gotham 53705"
          );
      }
 
-     public function getPerson(): ?Person
+     public function getPerson(): Person
      {
          return $this->person;
      }
