@@ -27,11 +27,11 @@ class Person
     public function __construct(string $name, string $email, string $phone, string $street, string $city)
     {
         $this->emailValidator = new EmailPropertyValidator();
-        $this->setName($name);
-        $this->setEmail($email);
-        $this->setPhone($phone);
-        $this->setStreet($street);
-        $this->setCity($city);
+        $this->setName(trim($name));
+        $this->setEmail(trim($email));
+        $this->setPhone(trim($phone));
+        $this->setStreet(trim($street));
+        $this->setCity(trim($city));
     }
 
     /**
