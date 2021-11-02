@@ -1,0 +1,19 @@
+{
+    "name": "klatt/flashscore",
+    "description": "Task for flashcore",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tomáš Klatt",
+            "email": "klatttomas@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
