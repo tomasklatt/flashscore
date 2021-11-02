@@ -2,6 +2,7 @@
 
 namespace app\model\entities;
 
+use app\Db;
 use app\exceptions\CityNotValidException;
 use app\exceptions\EmailNotValidException;
 use app\exceptions\NameNotValidException;
@@ -16,6 +17,7 @@ use Egulias\EmailValidator\Validation\RFCValidation;
 
 class Person
 {
+    private ?int $id;
     private string $name;
     private string $email;
     private string $phone;
@@ -24,7 +26,7 @@ class Person
 
     private EmailPropertyValidator $emailValidator;
 
-    public function __construct(string $name, string $email, string $phone, string $street, string $city)
+    public function __construct(string $name, string $email, string $phone, string $street, string $city, int $id = null)
     {
         $this->emailValidator = new EmailPropertyValidator();
         $this->setName(trim($name));
@@ -32,6 +34,15 @@ class Person
         $this->setPhone(trim($phone));
         $this->setStreet(trim($street));
         $this->setCity(trim($city));
+        $this->setId($id);
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     /**
@@ -72,6 +83,14 @@ class Person
     public function getCity(): string
     {
         return $this->city;
+    }
+
+    /**
+     * @param int|null $id
+     */
+    private function setId(?int $id): void
+    {
+        $this->id = $id;
     }
 
     /**
@@ -132,6 +151,28 @@ class Person
             throw new CityNotValidException("City is not valid.");
         }
         $this->city = $city;
+    }
+
+    /**
+     * @param Db $db
+     * @return bool
+     */
+    public function save(Db $db): bool
+    {
+        $db->savePerson($this);
+        return true;
+    }
+
+    /**
+     * @param Db $db
+     * @param int $id
+     * @return bool
+     */
+    public static function load(Db $db, int $id): bool
+    {
+        $data = $db->loadPersonById($id);
+        //new Person();
+        return true;
     }
 
 }

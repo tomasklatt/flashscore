@@ -1,9 +1,10 @@
 <?php
 
-use app\model\builders\PersonBuilder;
+namespace app\model\builders;
+
 use app\model\entities\Person;
 
-class TestPersonBuilder implements PersonBuilder
+class UniversalPersonBuilder implements PersonBuilder
 {
     private Person $person;
 

@@ -5,10 +5,9 @@ use app\exceptions\EmailNotValidException;
 use app\exceptions\NameNotValidException;
 use app\exceptions\PhoneNotValidException;
 use app\exceptions\StreetNotValidException;
+use app\model\builders\UniversalPersonBuilder;
 use app\model\entities\Person;
 use PHPUnit\Framework\TestCase;
-
-include('TestPersonBuilder.php');
 
 final class PersonTest extends TestCase
 {
@@ -32,7 +31,7 @@ final class PersonTest extends TestCase
     ): void {
         $this->assertInstanceOf(
             Person::class,
-            (new TestPersonBuilder(
+            (new UniversalPersonBuilder(
                 name: $name,
                 email: $email,
                 phone: $phone,
@@ -58,7 +57,7 @@ final class PersonTest extends TestCase
     {
         $this->expectException(NameNotValidException::class);
 
-        new TestPersonBuilder(
+        new UniversalPersonBuilder(
             name: $invalidName,
             email: 'mail@tomasklatt.cz',
             phone: '724 148 490',
@@ -83,7 +82,7 @@ final class PersonTest extends TestCase
     {
         $this->expectException(EmailNotValidException::class);
 
-        new TestPersonBuilder(
+        new UniversalPersonBuilder(
             name: 'Tomáš Klatt',
             email: $invalidEmail,
             phone: '724 148 490',
@@ -111,7 +110,7 @@ final class PersonTest extends TestCase
     {
         $this->expectException(PhoneNotValidException::class);
 
-        new TestPersonBuilder(
+        new UniversalPersonBuilder(
             name: 'Tomáš Klatt',
             email: 'mail@tomasklatt.cz',
             phone: $invalidPhone,
@@ -140,7 +139,7 @@ final class PersonTest extends TestCase
     {
         $this->expectException(StreetNotValidException::class);
 
-        new TestPersonBuilder(
+        new UniversalPersonBuilder(
             name: 'Tomáš Klatt',
             email: 'mail@tomasklatt.cz',
             phone: '724 148 490',
@@ -168,7 +167,7 @@ final class PersonTest extends TestCase
     {
         $this->expectException(CityNotValidException::class);
 
-        new TestPersonBuilder(
+        new UniversalPersonBuilder(
             name: 'Tomáš Klatt',
             email: 'mail@tomasklatt.cz',
             phone: '724 148 490',

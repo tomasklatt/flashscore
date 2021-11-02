@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "app\\": "app/"
+            "app\\": "app"
         }
     },
     "authors": [
@@ -17,7 +17,8 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=8.0",
-        "egulias/email-validator": "^3.1"
+        "egulias/email-validator": "^3.1",
+        "ext-sqlite3": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
