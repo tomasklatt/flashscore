@@ -80,7 +80,7 @@ class Person
      */
     private function setName(string $name): void
     {
-        if(NamePropertyValidator::isValid($name)){
+        if(!NamePropertyValidator::isValid($name)){
             throw new NameNotValidException("Name is not valid.");
         }
         $this->name = $name;
@@ -92,7 +92,7 @@ class Person
      */
     private function setEmail(string $email): void
     {
-        if($this->emailValidator->isValid($email, new RFCValidation())){
+        if(!$this->emailValidator->isValid($email, new RFCValidation())){
             throw new EmailNotValidException("Email is not valid.");
         }
         $this->email = $email;
@@ -104,7 +104,7 @@ class Person
      */
     private function setPhone(string $phone): void
     {
-        if(PhonePropertyValidator::isValid($phone)){
+        if(!PhonePropertyValidator::isValid($phone)){
             throw new PhoneNotValidException("Phone is not valid.");
         }
         $this->phone = $phone;
@@ -116,7 +116,7 @@ class Person
      */
     private function setStreet(string $street): void
     {
-        if(StreetPropertyValidator::isValid($street)){
+        if(!StreetPropertyValidator::isValid($street)){
             throw new StreetNotValidException("Phone is not valid.");
         }
         $this->street = $street;
@@ -128,7 +128,7 @@ class Person
      */
     private function setCity(string $city): void
     {
-        if(CityPropertyValidator::isValid($city)){
+        if(!CityPropertyValidator::isValid($city)){
             throw new CityNotValidException("Phone is not valid.");
         }
         $this->city = $city;
