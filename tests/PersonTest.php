@@ -42,12 +42,24 @@ final class PersonTest extends TestCase
         );
     }
 
-    public function testCannotBeCreatedWithInvalidName(): void
+    public function invalidNameProvider(): array
+    {
+        return [
+            ['Tomáš 5Klatt'],
+            ['select * from users'],
+            ['.........asdasd....']
+        ];
+    }
+
+    /**
+     * @dataProvider invalidNameProvider
+     */
+    public function testCannotBeCreatedWithInvalidName(string $invalidName): void
     {
         $this->expectException(NameNotValidException::class);
 
         new TestPersonBuilder(
-            name: 'Tomáš 5Klatt',
+            name: $invalidName,
             email: 'mail@tomasklatt.cz',
             phone: '724 148 490',
             street: 'Absolonova 634',
@@ -55,33 +67,76 @@ final class PersonTest extends TestCase
         );
     }
 
-    public function testCannotBeCreatedWithInvalidEmailAddress(): void
+    public function invalidEmailProvider(): array
+    {
+        return [
+            ['invalid'],
+            ['mail@tomasklatt'],
+            ['5555442']
+        ];
+    }
+
+    /**
+     * @dataProvider invalidEmailProvider
+     */
+    public function testCannotBeCreatedWithInvalidEmailAddress(string $invalidEmail): void
     {
         $this->expectException(EmailNotValidException::class);
 
         new TestPersonBuilder(
             name: 'Tomáš Klatt',
-            email: 'invalid',
+            email: $invalidEmail,
             phone: '724 148 490',
             street: 'Absolonova 634',
             city: 'Brno 62400'
         );
     }
 
-    public function testCannotBeCreatedWithInvalidPhone(): void
+    public function invalidPhoneProvider(): array
+    {
+        return [
+            ['invalid'],
+            ['mail@tomasklatt'],
+            ['5555442'],
+            ['724148490'],
+            ['000 000 000'],
+            ['800 000 000']
+        ];
+    }
+
+    /**
+     * @dataProvider invalidPhoneProvider
+     */
+    public function testCannotBeCreatedWithInvalidPhone(string $invalidPhone): void
     {
         $this->expectException(PhoneNotValidException::class);
 
         new TestPersonBuilder(
             name: 'Tomáš Klatt',
             email: 'mail@tomasklatt.cz',
-            phone: '000 000 000',
+            phone: $invalidPhone,
             street: 'Absolonova 634',
             city: 'Brno 62400'
         );
     }
 
-    public function testCannotBeCreatedWithInvalidStreet(): void
+    public function invalidStreetProvider(): array
+    {
+        return [
+            ['invalid'],
+            ['mail@tomasklatt'],
+            ['5555442'],
+            ['724148490'],
+            ['000 000 000'],
+            ['Absolonova'],
+            ['Absolonova ']
+        ];
+    }
+
+    /**
+     * @dataProvider invalidStreetProvider
+     */
+    public function testCannotBeCreatedWithInvalidStreet(string $invalidStreet): void
     {
         $this->expectException(StreetNotValidException::class);
 
@@ -89,12 +144,27 @@ final class PersonTest extends TestCase
             name: 'Tomáš Klatt',
             email: 'mail@tomasklatt.cz',
             phone: '724 148 490',
-            street: 'Absolonova ',
+            street: $invalidStreet,
             city: 'Brno 62400'
         );
     }
 
-    public function testCannotBeCreatedWithInvalidCity(): void
+    public function invalidCityProvider(): array
+    {
+        return [
+            ['invalid'],
+            ['mail@tomasklatt'],
+            ['5555442'],
+            ['724148490'],
+            ['Brno'],
+            ['Brno ']
+        ];
+    }
+
+    /**
+     * @dataProvider invalidCityProvider
+     */
+    public function testCannotBeCreatedWithInvalidCity(string $invalidCity): void
     {
         $this->expectException(CityNotValidException::class);
 
@@ -103,7 +173,7 @@ final class PersonTest extends TestCase
             email: 'mail@tomasklatt.cz',
             phone: '724 148 490',
             street: 'Absolonova 634',
-            city: 'Brno'
+            city: $invalidCity
         );
     }
 }

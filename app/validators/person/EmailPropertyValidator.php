@@ -2,16 +2,17 @@
 
 namespace app\validators\person;
 
+use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\EmailValidation;
 use Egulias\EmailValidator\Validation\RFCValidation;
 
 class EmailPropertyValidator
 {
-    private \Egulias\EmailValidator\EmailValidator $eguliasEmailValidator;
+    private EmailValidator $eguliasEmailValidator;
 
     public function __construct()
     {
-        $this->eguliasEmailValidator = new \Egulias\EmailValidator\EmailValidator();
+        $this->eguliasEmailValidator = new EmailValidator();
     }
 
     public function isValid(string $email, EmailValidation|RFCValidation $emailValidation = null): bool
