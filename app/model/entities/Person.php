@@ -2,8 +2,16 @@
 
 namespace app\model\entities;
 
+use app\exceptions\CityNotValidException;
 use app\exceptions\EmailNotValidException;
-use Egulias\EmailValidator\EmailValidator;
+use app\exceptions\NameNotValidException;
+use app\exceptions\PhoneNotValidException;
+use app\exceptions\StreetNotValidException;
+use app\validators\person\CityPropertyValidator;
+use app\validators\person\EmailPropertyValidator;
+use app\validators\person\NamePropertyValidator;
+use app\validators\person\PhonePropertyValidator;
+use app\validators\person\StreetPropertyValidator;
 use Egulias\EmailValidator\Validation\RFCValidation;
 
 class Person
@@ -14,11 +22,11 @@ class Person
     private string $street;
     private string $city;
 
-    private EmailValidator $emailValidator;
+    private EmailPropertyValidator $emailValidator;
 
     public function __construct(string $name, string $email, string $phone, string $street, string $city)
     {
-        $this->emailValidator = new EmailValidator();
+        $this->emailValidator = new EmailPropertyValidator();
         $this->setName($name);
         $this->setEmail($email);
         $this->setPhone($phone);
@@ -68,9 +76,13 @@ class Person
 
     /**
      * @param string $name
+     * @throws NameNotValidException
      */
     private function setName(string $name): void
     {
+        if(NamePropertyValidator::isValid($name)){
+            throw new NameNotValidException("Name is not valid.");
+        }
         $this->name = $name;
     }
 
@@ -88,25 +100,37 @@ class Person
 
     /**
      * @param string $phone
+     * @throws PhoneNotValidException
      */
     private function setPhone(string $phone): void
     {
+        if(PhonePropertyValidator::isValid($phone)){
+            throw new PhoneNotValidException("Phone is not valid.");
+        }
         $this->phone = $phone;
     }
 
     /**
      * @param string $street
+     * @throws StreetNotValidException
      */
     private function setStreet(string $street): void
     {
+        if(StreetPropertyValidator::isValid($street)){
+            throw new StreetNotValidException("Phone is not valid.");
+        }
         $this->street = $street;
     }
 
     /**
      * @param string $city
+     * @throws CityNotValidException
      */
     private function setCity(string $city): void
     {
+        if(CityPropertyValidator::isValid($city)){
+            throw new CityNotValidException("Phone is not valid.");
+        }
         $this->city = $city;
     }
 

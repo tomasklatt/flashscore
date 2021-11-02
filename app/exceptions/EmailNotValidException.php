@@ -2,7 +2,7 @@
 
 namespace app\exceptions;
 
-class EmailNotValidException extends \Exception
+class EmailNotValidException extends PersonPropertyNotValidException
 {
 
 }
