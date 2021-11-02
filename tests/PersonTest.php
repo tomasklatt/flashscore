@@ -59,7 +59,7 @@ final class PersonTest extends TestCase
         new TestPersonBuilder(
             name: 'Tomáš Klatt',
             email: 'mail@tomasklatt.cz',
-            phone: '724148490',
+            phone: '000 000 000',
             street: 'Absolonova 634',
             city: 'Brno 62400'
         );
