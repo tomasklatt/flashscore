@@ -5,12 +5,27 @@ use app\exceptions\EmailNotValidException;
 use app\exceptions\NameNotValidException;
 use app\exceptions\PhoneNotValidException;
 use app\exceptions\StreetNotValidException;
+use app\model\entities\Person;
 use PHPUnit\Framework\TestCase;
 
 include('TestPersonBuilder.php');
 
 final class PersonTest extends TestCase
 {
+    public function testCanBeCreatedWithValidData(): void
+    {
+        $this->assertInstanceOf(
+            Person::class,
+            (new TestPersonBuilder(
+                name: 'Tomáš Klatt',
+                email: 'mail@tomasklatt.cz',
+                phone: '724 148 490',
+                street: 'Absolonova 634',
+                city: 'Brno 62400'
+            ))->getPerson()
+        );
+    }
+
     public function testCannotBeCreatedWithInvalidName(): void
     {
         $this->expectException(NameNotValidException::class);
