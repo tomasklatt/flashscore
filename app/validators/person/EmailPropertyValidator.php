@@ -17,6 +17,7 @@ class EmailPropertyValidator
 
     public function isValid(string $email, EmailValidation|RFCValidation $emailValidation = null): bool
     {
-        return $this->eguliasEmailValidator->isValid($email, $emailValidation ?? new RFCValidation());
+        //the Egulias email validator check mail@tomasklatt as valid, so I added filter bellow
+        return filter_var($email, FILTER_VALIDATE_EMAIL) && $this->eguliasEmailValidator->isValid($email, $emailValidation ?? new RFCValidation());
     }
 }
