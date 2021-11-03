@@ -8,19 +8,21 @@ class UniversalPersonBuilder implements PersonBuilder
 {
     private Person $person;
 
+    private ?int $id;
     private string $name;
     private string $email;
     private string $phone;
     private string $street;
     private string $city;
 
-    public function __construct(string $name, string $email, string $phone, string $street, string $city)
+    public function __construct(string $name, string $email, string $phone, string $street, string $city, int $id = null)
     {
         $this->name = $name;
         $this->email = $email;
         $this->phone = $phone;
         $this->street = $street;
         $this->city = $city;
+        $this->id = $id;
         self::build();
     }
 
@@ -31,7 +33,8 @@ class UniversalPersonBuilder implements PersonBuilder
              email: $this->email,
              phone: $this->phone,
              street: $this->street,
-             city: $this->city
+             city: $this->city,
+             id: $this->id
          );
      }
 

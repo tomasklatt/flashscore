@@ -3,11 +3,13 @@
 namespace app\model\entities;
 
 use app\Db;
-use app\exceptions\CityNotValidException;
-use app\exceptions\EmailNotValidException;
-use app\exceptions\NameNotValidException;
-use app\exceptions\PhoneNotValidException;
-use app\exceptions\StreetNotValidException;
+use app\exceptions\db\DbLoadException;
+use app\exceptions\db\DbSaveException;
+use app\exceptions\validation\CityNotValidException;
+use app\exceptions\validation\EmailNotValidException;
+use app\exceptions\validation\NameNotValidException;
+use app\exceptions\validation\PhoneNotValidException;
+use app\exceptions\validation\StreetNotValidException;
 use app\validators\person\CityPropertyValidator;
 use app\validators\person\EmailPropertyValidator;
 use app\validators\person\NamePropertyValidator;
@@ -156,6 +158,7 @@ class Person
     /**
      * @param Db $db
      * @return bool
+     * @throws DbSaveException
      */
     public function save(Db $db): bool
     {
@@ -167,11 +170,11 @@ class Person
      * @param Db $db
      * @param int $id
      * @return bool
+     * @throws DbLoadException
      */
     public static function load(Db $db, int $id): bool
     {
-        $data = $db->loadPersonById($id);
-        //new Person();
+        $db->loadPersonById($id);
         return true;
     }
 

@@ -1,10 +1,10 @@
 <?php
 
-use app\exceptions\CityNotValidException;
-use app\exceptions\EmailNotValidException;
-use app\exceptions\NameNotValidException;
-use app\exceptions\PhoneNotValidException;
-use app\exceptions\StreetNotValidException;
+use app\exceptions\validation\CityNotValidException;
+use app\exceptions\validation\EmailNotValidException;
+use app\exceptions\validation\NameNotValidException;
+use app\exceptions\validation\PhoneNotValidException;
+use app\exceptions\validation\StreetNotValidException;
 use app\model\builders\UniversalPersonBuilder;
 use app\model\entities\Person;
 use PHPUnit\Framework\TestCase;
