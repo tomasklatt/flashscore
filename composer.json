@@ -1,6 +1,6 @@
 {
     "name": "klatt/flashscore",
-    "description": "Task for flashcore",
+    "description": "Task for flashscore",
     "type": "project",
     "license": "MIT",
     "autoload": {
