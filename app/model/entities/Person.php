@@ -101,9 +101,7 @@ class Person
      */
     private function setName(string $name): void
     {
-        if(!NamePropertyValidator::isValid($name)){
-            throw new NameNotValidException("Name is not valid.");
-        }
+        NamePropertyValidator::validate($name);
         $this->name = $name;
     }
 
@@ -113,9 +111,7 @@ class Person
      */
     private function setEmail(string $email): void
     {
-        if(!$this->emailValidator->isValid($email, new RFCValidation())){
-            throw new EmailNotValidException("Email is not valid.");
-        }
+        $this->emailValidator->validate($email, new RFCValidation());
         $this->email = $email;
     }
 
@@ -125,9 +121,7 @@ class Person
      */
     private function setPhone(string $phone): void
     {
-        if(!PhonePropertyValidator::isValid($phone)){
-            throw new PhoneNotValidException("Phone is not valid.");
-        }
+        PhonePropertyValidator::validate($phone);
         $this->phone = $phone;
     }
 
@@ -137,9 +131,7 @@ class Person
      */
     private function setStreet(string $street): void
     {
-        if(!StreetPropertyValidator::isValid($street)){
-            throw new StreetNotValidException("Street is not valid.");
-        }
+        StreetPropertyValidator::validate($street);
         $this->street = $street;
     }
 
@@ -149,9 +141,7 @@ class Person
      */
     private function setCity(string $city): void
     {
-        if(!CityPropertyValidator::isValid($city)){
-            throw new CityNotValidException("City is not valid.");
-        }
+        CityPropertyValidator::validate($city);
         $this->city = $city;
     }
 
