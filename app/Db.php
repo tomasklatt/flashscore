@@ -6,6 +6,7 @@ use app\exceptions\db\DbLoadException;
 use app\exceptions\db\DbSaveException;
 use app\model\builders\UniversalPersonBuilder;
 use app\model\entities\Person;
+use Exception;
 use SQLite3;
 
 class Db extends SQLite3 {
@@ -25,7 +26,7 @@ class Db extends SQLite3 {
             $stmt->bindValue(':street', $person->getStreet());
             $stmt->bindValue(':city', null);
             $stmt->execute();
-        } catch (\Exception $e){
+        } catch (Exception $e){
             throw new DbSaveException('Person wasn\'t saved.');
         }
     }
@@ -46,7 +47,7 @@ class Db extends SQLite3 {
                 city: $data['city'],
                 id: $data['id']
             );
-        } catch (\Exception $e){
+        } catch (Exception $e){
             throw new DbLoadException('Person cannot be load.');
         }
     }

@@ -2,7 +2,9 @@
 
 namespace app\exceptions\validation;
 
-class PersonPropertyNotValidException extends \Exception
+use Exception;
+
+class PersonPropertyNotValidException extends Exception
 {
 
 }

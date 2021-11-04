@@ -14,7 +14,7 @@ class Application
     public function __construct()
     {
         $this->db = new Db();
-        $person = (new TomasKlattBuilder())->getPerson()->save($this->db);
+        (new TomasKlattBuilder())->getPerson()->save($this->db);
         Person::load($this->db, 99);
     }
 }

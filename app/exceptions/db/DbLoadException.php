@@ -2,7 +2,9 @@
 
 namespace app\exceptions\db;
 
-class DbLoadException extends \Exception
+use Exception;
+
+class DbLoadException extends Exception
 {
 
 }

@@ -9,7 +9,7 @@ class PhonePropertyValidator implements PersonPropertyValidator
     CONST PHONE_STRING_PATTERN = '^[67]{1}\d{2} \d{3} \d{3}$';
 
     /**
-     * @param string $property
+     * @param string $propertyValue
      * @return bool
      */
     public static function isValid(string $propertyValue): bool
