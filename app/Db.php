@@ -24,7 +24,7 @@ class Db extends SQLite3 {
             $stmt->bindValue(':email', $person->getEmail());
             $stmt->bindValue(':phone', $person->getPhone());
             $stmt->bindValue(':street', $person->getStreet());
-            $stmt->bindValue(':city', null);
+            $stmt->bindValue(':city', $person->getCity());
             $stmt->execute();
         } catch (Exception $e){
             throw new DbSaveException('Person wasn\'t saved.');
