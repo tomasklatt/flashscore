@@ -1,4 +1,4 @@
-FROM php:8.0-cli
+FROM php:8.1-cli
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -10,3 +10,5 @@ WORKDIR /usr/src/app
 
 RUN composer install --dev
 CMD [ "composer", "test" ]
+CMD [ "composer", "test-detail" ]
+CMD [ "composer", "test-phpstan" ]

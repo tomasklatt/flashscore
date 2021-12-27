@@ -11,6 +11,9 @@ use PHPUnit\Framework\TestCase;
 
 final class PersonTest extends TestCase
 {
+    /**
+     * @return array{array{string, string, string, string, string}}
+     */
     public function successfulCreateProvider(): array
     {
         return [
@@ -41,6 +44,9 @@ final class PersonTest extends TestCase
         );
     }
 
+    /**
+     * @return array{array{string}}
+     */
     public function invalidNameProvider(): array
     {
         return [
@@ -66,6 +72,9 @@ final class PersonTest extends TestCase
         );
     }
 
+    /**
+     * @return array{array{string}}
+     */
     public function invalidEmailProvider(): array
     {
         return [
@@ -91,6 +100,9 @@ final class PersonTest extends TestCase
         );
     }
 
+    /**
+     * @return array{array{string}}
+     */
     public function invalidPhoneProvider(): array
     {
         return [
@@ -119,6 +131,9 @@ final class PersonTest extends TestCase
         );
     }
 
+    /**
+     * @return array{array{string}}
+     */
     public function invalidStreetProvider(): array
     {
         return [
@@ -148,6 +163,9 @@ final class PersonTest extends TestCase
         );
     }
 
+    /**
+     * @return array{array{string}}
+     */
     public function invalidCityProvider(): array
     {
         return [

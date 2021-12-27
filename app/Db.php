@@ -17,9 +17,13 @@ class Db extends SQLite3 {
         $this->enableExceptions(true);
     }
 
-    public function savePerson(Person $person){
+    public function savePerson(Person $person): void
+    {
         try {
             $stmt = $this->prepare('INSERT INTO person (name, email, phone, street, city) VALUES (:name, :email, :phone, :street, :city)');
+            if($stmt === false){
+                throw new DbSaveException('Person wasn\'t saved.');
+            }
             $stmt->bindValue(':name', $person->getName());
             $stmt->bindValue(':email', $person->getEmail());
             $stmt->bindValue(':phone', $person->getPhone());
@@ -31,11 +35,19 @@ class Db extends SQLite3 {
         }
     }
 
-    public function loadPersonById(int $id){
+    public function loadPersonById(int $id): void
+    {
         try {
             $stmt = $this->prepare('SELECT * FROM person WHERE id = :id');
+            if($stmt === false){
+                throw new DbLoadException('Person cannot be load.');
+            }
             $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-            $data = $stmt->execute()->fetchArray();
+            $result = $stmt->execute();
+            if($result === false){
+                throw new DbLoadException('Person cannot be load.');
+            }
+            $data = $result->fetchArray();
             if($data === false){
                 throw new DbLoadException('Person cannot be load.');
             }

@@ -24,7 +24,7 @@ class TomasKlattBuilder implements PersonBuilder
          );
      }
 
-     public function getPerson(): ?Person
+     public function getPerson(): Person
      {
          return $this->person;
      }
