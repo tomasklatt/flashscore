@@ -26,7 +26,7 @@ class UniversalPersonBuilder implements PersonBuilder
         self::build();
     }
 
-    public function build(): void
+    final function build(): void
      {
          $this->person = new Person(
              name: $this->name,

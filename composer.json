@@ -22,11 +22,16 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
-        "phpstan/phpstan": "^1.2"
+        "phpstan/phpstan": "^1.2",
+        "vimeo/psalm": "^4.16"
     },
     "scripts": {
-        "test": "phpunit tests",
-        "test-detail": "phpunit tests --colors=always --verbose --testdox",
-        "test-phpstan": "phpstan analyse -l 9 app tests"
+        "test": [
+            "phpunit tests",
+            "phpunit tests --colors=always --verbose --testdox",
+            "phpstan analyse -l 9 app tests",
+            "psalm --init",
+            "psalm --show-info=true"
+        ]
     }
 }

@@ -51,6 +51,15 @@ class Db extends SQLite3 {
             if($data === false){
                 throw new DbLoadException('Person cannot be load.');
             }
+            if(!is_string($data['name']) ||
+                !is_string($data['email']) ||
+                !is_string($data['phone']) ||
+                !is_string($data['street']) ||
+                !is_string($data['city']) ||
+                !is_int($data['id']))
+            {
+                throw new DbLoadException('Person cannot be load.');
+            }
             new UniversalPersonBuilder(
                 name: $data['name'],
                 email: $data['email'],

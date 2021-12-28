@@ -10,5 +10,3 @@ WORKDIR /usr/src/app
 
 RUN composer install --dev
 CMD [ "composer", "test" ]
-CMD [ "composer", "test-detail" ]
-CMD [ "composer", "test-phpstan" ]
